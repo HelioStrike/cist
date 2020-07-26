@@ -10,5 +10,5 @@
     "clist_username": "CLIST_USERNAME",
     "clist_api_key": "CLIST_API_KEY",
     "list_objects": ["contests", "resources", "c", "r"],
-    "object_limit": 10
+    "object_limit": 16
 }

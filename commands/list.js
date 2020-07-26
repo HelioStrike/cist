@@ -11,7 +11,7 @@ module.exports = {
 
         //Invalid syntax check
         if (num_args == 0 || list_objects.indexOf(args[0]) === -1) {
-			return message.channel.send('');
+			return message.channel.send('Invalid syntax');
 		}
 
         if (args[0] === "contests" || args[0] === "c") {
@@ -33,18 +33,12 @@ module.exports = {
 
             contests = utils.limitObjects(contests);
 
-            message.channel.send(`Found ${contests.length} contests.`);
+            const embed = new Discord.MessageEmbed()
+                            .setTitle(`Found ${contests.length} contests.`);
             contests.forEach(contest => {
-                const embed = new Discord.MessageEmbed()
-                                .setTitle(contest.event)
-                                .setURL(contest.href)
-                                .setImage(clist_base + contest.resource.icon)
-                                .addFields(
-                                    { name: 'Start', value: contest.start, inline: true },
-                                    { name: 'End', value: contest.end, inline: true }
-                                );
-                message.channel.send(embed);
+                embed.addField(`${contest.event} (${contest.href})`, `${contest.start} - ${contest.end}`);
             });
+            message.channel.send(embed);
 
         } else if (args[0] === "resources" || args[0] === "r") {
             //Return resources
@@ -64,14 +58,12 @@ module.exports = {
 
             resources = utils.limitObjects(resources);
 
-            message.channel.send(`Found ${resources.length} resources.`);
+            const embed = new Discord.MessageEmbed()
+                            .setTitle(`Found ${resources.length} resources.`);
             resources.forEach(resource => {
-                const embed = new Discord.MessageEmbed()
-                                .setTitle(resource.name)
-                                .setURL('https://' + resource.name)
-                                .setImage(clist_base + resource.icon);
-                message.channel.send(embed);
+                embed.addField(`${resource.name}`, `${'https://' + resource.name}`);
             });
+            message.channel.send(embed);
 
         }
 	},
