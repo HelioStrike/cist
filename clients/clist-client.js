@@ -1,11 +1,10 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 const utils = require('../utils.js');
 const { clist_contest_url, clist_resource_url, clist_username, clist_api_key, refresh_time } = require('../config.json');
 
 //Client to fetch data (contests and their sources) using clist.by API
 module.exports = class CListClient {
-    constructor(token) {
-        this.token = token;
+    constructor() {
         this.param_query = "?username=" + clist_username + "&api_key=" + clist_api_key;
         this.contests = [];
         this.resources = [];
@@ -17,10 +16,9 @@ module.exports = class CListClient {
         let d = new Date();
 
         //Fetch contests
-        fetch(clist_contest_url + this.param_query + "&end__gte=" + d.toISOString())
-        .then(res => res.json())
+        axios.get(clist_contest_url + this.param_query + "&end__gte=" + d.toISOString())
         .then(contest_data => {
-            this.contests = contest_data.objects;
+            this.contests = contest_data.data.objects;
 
             //Sort contests by end time
             this.contests.sort((a, b) => new Date(a.start) - new Date(b.start));
@@ -32,11 +30,10 @@ module.exports = class CListClient {
             });
         });
 
-        //Fetch contests
-        fetch(clist_resource_url + this.param_query)
-        .then(res => res.json())
+        //Fetch resources
+        axios.get(clist_resource_url + this.param_query)
         .then(resource_data => {
-            this.resources = resource_data.objects;
+            this.resources = resource_data.data.objects;
         });
     }
 

@@ -5,13 +5,14 @@ const utils = require('../utils.js');
 module.exports = {
 	name: 'list',
 	description: 'List coding competitions/contest websites!',
-	execute(message, clients, args) {
+	execute(discord_client, message, clients, args) {
         let num_args = args.length;
         let clist_client = clients['clist_client'];
 
         //Invalid syntax check
         if (num_args == 0 || list_objects.indexOf(args[0]) === -1) {
-			return message.channel.send('Invalid syntax');
+            discord_client.commands.get('help').execute(discord_client, message, clients, {});
+            return;
 		}
 
         if (args[0] === "contests" || args[0] === "c") {

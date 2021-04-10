@@ -4,7 +4,7 @@ const { bot_name, bot_description } = require('../config.json');
 module.exports = {
 	name: 'help',
 	description: 'Cist Help.',
-	execute(message, clients, args) {
+	execute(discord_client, message, clients, args) {
 
         const embed = new Discord.MessageEmbed()
         .setTitle(`${bot_name} help`)
@@ -26,6 +26,5 @@ module.exports = {
         );
 
         message.channel.send(embed);
-
 	},
 };
