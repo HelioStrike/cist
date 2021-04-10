@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-const { bot_name, bot_description } = require('../config.json');
+import * as Discord from 'discord.js';
+import { bot_name, bot_description } from '../config';
 
 module.exports = {
 	name: 'help',

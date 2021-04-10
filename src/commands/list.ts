@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
-const { clist_base, list_objects } = require('../config.json');
-const utils = require('../utils.js');
+import * as Discord from 'discord.js';
+import { clist_base, list_objects } from '../config';
+import * as utils from '../utils';
 
 module.exports = {
 	name: 'list',
