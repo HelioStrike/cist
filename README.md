@@ -13,6 +13,6 @@ Discord bot for competitive programming contests.
 ## Setting up
 
 - [Create a discord application](https://discordjs.guide/preparations/setting-up-a-bot-application.html) and then [add it to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html).
-- Paste the bot's token in `config.json`.
+- Paste the bot's token in `config.ts`.
 - Paste your [clist.by](https://clist.by/) username and [API key](https://clist.by/api/v1/doc/) in `config.json`.
-- Run `npm install` to install dependencies and then `node index.js` to run the application.
+- Run `npm install` to install dependencies and then `npm start` to run the application.
